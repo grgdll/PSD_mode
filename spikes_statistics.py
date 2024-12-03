@@ -17,7 +17,7 @@ import dill
 
 import colorcet as cc
 
-from scipy.integrate import trapz
+from scipy.integrate import trapezoid as trapz
 
 
   
@@ -80,7 +80,7 @@ def function_hist(data, bins):
 
 
 
-def get_binned_BB(rbr, time_bin, rbr_binned, bins):
+def get_binned_BB(rbr, time_bin, rbr_binned, bins, METHOD="Nathan"):
     # extract data for this bin
     rbr_smpl = rbr.loc[rbr['bin']==time_bin]
 
@@ -90,7 +90,7 @@ def get_binned_BB(rbr, time_bin, rbr_binned, bins):
     # rbr_baseline
 
     ## Extract spikes and log-transform them
-    rbr_spikes = get_spikes(rbr_smpl['BB700'].values, METHOD='grg');
+    rbr_spikes = get_spikes(rbr_smpl['BB700'].values, METHOD=METHOD);
     rbr_spikes_log = np.log10(rbr_spikes)
 
     ## Extract log-spike percentiles
